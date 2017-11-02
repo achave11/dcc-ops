@@ -14,14 +14,14 @@ RUN apt-get update \
 
 RUN apt-get install software-properties-common \
     && apt-add-repository ppa:ansible/ansible \
-    && apt-get update \ 
+    && apt-get update \
     && apt-get install -y libffi-dev python-dev libssl-dev
 #    && apt-get install -y ansible=2.2.1.0-1
 
 #Install PIP and then ansible.
 #Doing this because the latest version was setting ANSIBLE_SSH_CONTROL_PATH to None, so ssh.py was failing.
 RUN pip install ansible==2.2.1.0
-    
+
 
 # grab oracle java (auto accept licence)
 RUN add-apt-repository -y ppa:webupd8team/java \
@@ -33,7 +33,8 @@ RUN add-apt-repository -y ppa:webupd8team/java \
 ENV consonance_version=cgp-2.0.0-alpha.16
 
 # Switch to BD2K fork over Consonance source for reaping fix
-RUN wget --no-verbose https://github.com/BD2KGenomics/consonance/releases/download/${consonance_version}/consonance-arch-${consonance_version}.jar
+RUN wget --no-verbose https://www.dropbox.com/s/qbuz9smsye34513/consonance-arch-2.0.0-alpha.16-SNAPSHOT.jar?dl=0
+#https://github.com/BD2KGenomics/consonance/releases/download/${consonance_version}/consonance-arch-${consonance_version}.jar
 #RUN wget --no-verbose https://github.com/Consonance/consonance/releases/download/${consonance_version}/consonance-arch-${consonance_version}.jar
 # https://www.dropbox.com/s/giy9ayxlvpoohiz/consonance-arch-2.0-alpha.11-SNAPSHOT.jar
 # https://seqwaremaven.oicr.on.ca/artifactory/seqware-release/io/consonance/consonance-arch/${consonance_version}/consonance-arch-${consonance_version}.jar
